@@ -37,7 +37,7 @@
                     <tbody>
                         <tr>
                         <th scope="row">আমি খুঁজছি</th>
-                        <td>@if($primary_info->search_type == 1) পাত্রের বায়োডাটা @else পাত্রীর বায়োডাটা @endif</td>
+                        <td>@if($primary_info->search_type == 1) পাত্রীর বায়োডাটা @else   পাত্রের বায়োডাটা  @endif</td>
                         </tr>
 
                         <tr>
@@ -133,9 +133,9 @@
                         </tr>
                         <tr>
                         <th scope="row">বিভাগ </th>
-                        <td>@foreach( App\Models\districts::get() as $district ) 
-                            @if($general_info->divition==$district->id)
-                            {{$district->bn_name}}
+                        <td>@foreach( App\Models\divisions::get() as $divisions ) 
+                            @if($general_info->divition==$divisions->id)
+                            {{$divisions->bn_name}}
                             @endif
                             @endforeach বিভাগ</td>
                         </tr>
@@ -148,10 +148,15 @@
                             @endforeach</td>
                         </tr>
                         <tr>
+                        
                         <th scope="row">বিভাগ </th>
-                        <td>@foreach( App\Models\districts::get() as $district ) 
-                            @if($general_info->permanent_divition==$district->id)
-                            <p>{{$district->bn_name}}</p>
+                        <td>@foreach( App\Models\divisions::get() as $divisions ) 
+                          <script>
+                            console.log('{{$divisions->id}} , {{$divisions->permanent_divition}} {{$divisions->bn_name}}')
+                          </script>
+                            @if($general_info->permanent_divition==$divisions->id)
+                            
+                            <p>{{$divisions->bn_name}}</p>
                             @endif
                             @endforeach বিভাগ</td>
                         </tr>

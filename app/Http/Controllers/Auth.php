@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\OTP;
 use App\Models\AdminAuth;
+use App\Models\MultiUserModel;
 use App\Mail\SendOTP;
 use Mail;
+
 
 class Auth extends Controller
 {
@@ -16,7 +18,13 @@ class Auth extends Controller
         $req->session()->put('is_login', true);
            return redirect("/");
         }else{
-            return redirect("/login_view")->with(['message'=>'Email or Password not match']);
+            if(MultiUserModel::where(['email'=>$req->mail])->where(['password'=>md5($req->password)])->count() >0){
+                $req->session()->put(['is_login'=> true,'staff'=>true]);
+                return redirect("/"); 
+            }else{
+                return redirect("/login_view")->with(['message'=>'Email or Password not match']);
+
+            }
         }
     }
 public function logout(){

@@ -23,7 +23,9 @@
                         <td>Email</td>
                         <td>Subject</td>
                         <td>Message</td>
+                        @if (session('staff') !=true)
                         <td>Action</td>
+                        @endif
                     </tr>
                 </thead>
 
@@ -38,8 +40,9 @@
                     <td>{{$data->subject}}</td>
                     <td>{{$data->message}}</td>
                     <td>
+                        @if (session('staff') !=true)
                         <a href="client_message_delete/{{$data->id}}"  class="btn btn-danger btn-sm "> <i class="fa fa-trash" aria-hidden="true"></i> Delete  </a>
-                       
+                       @endif
                         
                     </td>
                 </tr>

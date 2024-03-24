@@ -21,7 +21,8 @@ use App\Models\visitor;
 use App\Models\favorite;
 use App\Models\client_contact;
 use App\Models\purchase_package;
-
+use App\Mail\approve_mail;
+use Mail;
 class home_controller extends Controller
 {
    static public function show_all_register(){
@@ -36,6 +37,12 @@ class home_controller extends Controller
     public function publish(Request $req){
        $result =  Register::where(['id'=>$req->id])->update(['is_publish'=>$req->status]);
         if($result){
+            if($req->status==1){
+                $mail =  Register::where(['id'=>$req->id])->first()->mail;
+                Mail::to($mail)->send(new approve_mail($req->id));
+            }
+          
+        
            return json_encode(["condition"=>true,"message"=>"Updated"]);
         }else{
            return json_encode(["condition"=>false,"message"=>"Updated Failed"]);
@@ -93,7 +100,19 @@ class home_controller extends Controller
     }
 
     public function list_register_view(Request $req){
-        if(isset($req->type) &&  $req->type == "new_r"){
+        
+
+        if(isset($req->filtering)  &&  $req->filtering == "ok"){
+            if(isset($req->is_publish)  &&  $req->is_publish == "NULL"){
+                $register =  \DB::select("SELECT user.*, communication.parent_number FROM user LEFT JOIN communication ON user.id =communication.user_table_id  WHERE user.gender LIKE '%$req->gender%' AND user.is_publish IS NULL AND  user.is_update LIKE '%$req->is_update%' ORDER BY user.id DESC ");
+                return view("pages.listRegister.list_register",['register'=>$register]);
+            }
+            // return $req;
+            $register =  \DB::select("SELECT user.*, communication.parent_number FROM user LEFT JOIN communication ON user.id =communication.user_table_id  WHERE user.gender LIKE '%$req->gender%' AND user.is_publish LIKE '%$req->is_publish%' AND  user.is_update LIKE '%$req->is_update%' ORDER BY user.id DESC ");
+          return view("pages.listRegister.list_register",['register'=>$register]);
+        }
+
+      else if(isset($req->type) &&  $req->type == "new_r"){
         //    return $req;
            $register = \DB::select("SELECT user.*, communication.parent_number FROM user LEFT JOIN communication ON user.id =communication.user_table_id WHERE user.is_seen =0");
             Register::where(['is_seen'=>0])->update(['is_seen'=>1]);

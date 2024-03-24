@@ -58,29 +58,30 @@
                 </a>
               </li>
         
-        {{-- <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+        <li class="nav-item ">
+          <a href="#" class="nav-link ">
+            {{-- <i class="nav-icon fas fa-tachometer-alt"></i> --}}
+            <i class="nav-icon fas fa-solid fa-blog"></i>
             <p>
-              Starter Pages
+              Blogs 
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link active">
+              <a href="{{URL::to("/create_blogs_page")}}" class="nav-link ">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Active Page</p>
+                <p>Create a Blog</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{URL::to("/all_blog")}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Inactive Page</p>
+                <p>All Blogs</p>
               </a>
             </li>
           </ul>
-        </li> --}}
+        </li>
         <li class="nav-item">
           <a href="{{URL::to('/clientcontact')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -90,6 +91,18 @@
             </p>
           </a>
         </li>
+        @if (session('staff') !=true)
+        
+        <li class="nav-item">
+          <a href="{{URL::to('/multi_user_page')}}" class="nav-link">
+            <i class="nav-icon fa fa-user" aria-hidden="true"></i>
+            <p>
+              Multi User
+              {{-- <span class="right badge badge-danger">New</span> --}}
+            </p>
+          </a>
+        </li>
+        @endif
         <li class="nav-item">
           <a href="{{URL::to('/buyerpackage')}}" class="nav-link">
             <i class="nav-icon fas fa-people-carry"></i>

@@ -16,16 +16,85 @@
             </div>
             @endif
             <div>
-                <div class="float-right d-flex">
-                    <select onchange="handle_change(this)" style="width: 10rem" class="form-control">
-                        <option value="mail_cls">Search by mail</option>
-                        <option value="phone_cls">Search by phone</option>
+                <div class="row">
+                    <div class="col-lg-9 col-md-6 col-sm-12">
+                        <div class="">
+                            <div class="card-body">
+                       <form action="" class="row">
+                        <div class="col-lg-3">
+                        <div class="form-check">
+                            <input class="form-check-input" name="gender" type="radio" value="male">
+                            <label class="form-check-label" >male</label>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-check">
+                                <input class="form-check-input" name="gender" type="radio" value="female" >
+                                <label class="form-check-label" >female</label>
+                              </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_publish" value="1" >
+                                <label class="form-check-label" >approve</label>
+                              </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_publish" value="0">
+                                <label class="form-check-label" >un approve</label>
+                              </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_publish" value="NULL">
+                                <label class="form-check-label" >mis approve</label>
+                              </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_update" value="1" >
+                                <label class="form-check-label" >edited </label>
+                              </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio"  name="is_update"  value="0" >
+                                <label class="form-check-label" >un edited </label>
+                              </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="w-50">
+                                <button name="filtering" value="ok" class="btn btn-success btn-sm btn-block">filter </button>
+
+                            </div>
+                            </div>
+    
+
+                       </form>
+                    </div>
+                    </div>
+                    </div>
+
+               <div class="col-lg-3 col-md-6 col-sm-12">
+             <div class="float-right d-flex">
+    
+                    <select onchange="handle_change(this)" style="width: 5rem" class="form-control">
+                        <option value="mail_cls">mail</option>
+                        <option value="phone_cls">phone</option>
                     </select>
-                    <input type="search" class="form-control" name="" onkeyup="handle_search(this)" placeholder="Search" id="mail_cls">
+                    <input type="search" style="width: 9rem" class="form-control"  onkeyup="handle_search(this)" placeholder="Search" id="mail_cls">
                 </div>
+            </div>
                 <br>
             </div>
-            <hr>
+          
             <table class="table table-striped table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
@@ -60,9 +129,10 @@
                         <input type="checkbox"  id="{{$data->id}}" onchange="handle_check(this)" @if($data->is_publish == 1 ) checked @endif name="" id=""> Approve
 
                        </div>
-
-                       <a href="delete_register/{{$data->id}}"  class="btn btn-danger btn-sm "> <i class="fa fa-trash" aria-hidden="true"></i> Delete  </a>
-
+                       {{-- delete_register --}}
+                       @if (session('staff') !=true)
+                       <a id="/{{$data->id}}" onclick="confirm_delete('{{$data->id}}')"  class="btn btn-danger btn-sm "> <i class="fa fa-trash" aria-hidden="true"></i> Delete  </a>
+                       @endif
                     </td>
                 </tr>
                    @endforeach
@@ -117,6 +187,12 @@ function handle_change(e){
 // console.log(e.value)
 e.nextElementSibling.id = e.value
 // console.log(e.nextElementSibling)
+}
+
+function confirm_delete(id){
+    if(confirm('Do you want to delete ?')==true){
+        window.location.href = `delete_register/${id}`
+    }
 }
 
 </script>
