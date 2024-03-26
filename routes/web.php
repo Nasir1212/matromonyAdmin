@@ -20,6 +20,12 @@ use App\Http\Controllers\Auth;
 Route::get('/', function () {
 return view("pages.home.home");
 })->middleware('login');
+
+Route::get('/popup', function () {
+return view("pages.popup.popup");
+})->middleware('login');
+
+
 Route::get('/login_view', function () {
     return view("pages.login.login");
 });
@@ -49,6 +55,7 @@ Route::middleware('login')->controller(BlogController::class)->group(function ()
     Route::post("/update_blog","update_blog");  
     Route::get("/delete_blog","delete_blog");  
     Route::get("/update_popup","update_popup"); //It is popup message for without biodata complete user  
+    Route::get("/popup_enable_disable","popup_enable_disable"); //It is popup message for without biodata complete user  
 });
 
 Route::middleware('login')->controller(MultiUserController::class)->group(function () {

@@ -91,6 +91,16 @@
             </p>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a href="{{URL::to('/popup')}}" class="nav-link">
+           <i class=" nav-icon fas fa-notes-medical    "></i>
+            <p>
+              Popup
+              {{-- <span class="right badge badge-danger">New</span> --}}
+            </p>
+          </a>
+        </li>
         @if (session('staff') !=true)
         
         <li class="nav-item">

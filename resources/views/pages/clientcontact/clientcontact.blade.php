@@ -14,17 +14,17 @@
             {{ session('message') }}
         </div>
         @endif
-        <div class="card-body">
+        <div class="card-body" style="overflow: scroll">
             <table class="table table-striped table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Subject</td>
-                        <td>Message</td>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th style="width: 23rem;" >Message</th>
                         @if (session('staff') !=true)
-                        <td>Action</td>
+                        <th>Action</th>
                         @endif
                     </tr>
                 </thead>

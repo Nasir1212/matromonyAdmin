@@ -14,8 +14,8 @@
             {{ session('message') }}
         </div>
         @endif
-        <div class="card-body">
-            <table class="table table-striped table-hover table-sm">
+        <div class="card-body" style="overflow: scroll">
+            <table class="table table-striped table-hover table-sm" >
                 <thead class="thead-dark">
                     <tr>
                         <td>#</td>
@@ -45,6 +45,7 @@
                 </tbody>
             </table>
         </div>
+       </div>
        </div>
     </div>
    </div>

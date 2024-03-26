@@ -213,36 +213,7 @@
 
                 </div>
                 
-                <div class="col-lg-6 col-md-6 col-sm-12 ">
-                    <div class="card ">
-                        <div class="card-header">
-                          <p><b>PopUp </b></p>
-                        </div>
-                        <form action="{{URL::to("/update_popup")}}">
-                        <div class="card-body">
-
-                            <div class="row">
-                                
-                                <div class="form-group col-12">
-                                  <label for=""><small> Popup title</small> </label>
-                                  <input class="form-control"  placeholder=" Write your popup title" value="{{ App\Models\PopUpMessage::where(['id'=>1])->first()->title }}"   name="title" ></input>  
-                                  <input type="hidden" value="{{ App\Models\PopUpMessage::where(['id'=>1])->first()->id }}"  name="id" ></input>  
-                                </div>
-                                <div class="form-group col-12">
-                                    <label for=""> <small>Popup Message</small> </label>
-                                    <textarea style="height: 10rem" class="form-control" cols="10"  placeholder=" Write your popup Message"   name="message">{{ App\Models\PopUpMessage::where(['id'=>1])->first()->message }}</textarea>  
-                                </div>
-                                <div class="form-group col-12">
-                                    <button class="btn bg-danger btn-success btn-sm font-weight-bold">Submit</button>
-                                </div>
-                           
-                            </div>
-
-                        </div>
-                    </form>
-                    </div>
-
-                </div>
+              
 
 
 

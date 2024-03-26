@@ -38,7 +38,7 @@
                     <td><img style="width: 100px;height:100px" src="@if($data->img_path != null)https://img.ordhangini.com/uploads/{{$data->img_path}}@else https://ordhangini.com/frontend/img/220_F_137578103_ulK9MbD9IfKACx9RZe6Rx7PAyBA9aN2K.jpg @endif" alt=""></td>
                     <td> {!! substr($data->blog,0,100) !!}</td>
                     <td>
-                        <a href="/{{$data->id}}"  class="btn btn-success btn-sm " title="Details"> <i class="fa fa-eye" aria-hidden="true"></i>   </a>
+                        {{-- <a href="/{{$data->id}}"  class="btn btn-success btn-sm " title="Details"> <i class="fa fa-eye" aria-hidden="true"></i>   </a> --}}
                        {{-- delete_register --}}
                        <a href="{{URL::to("/edit_blog_page/$data->id")}}"  title="Edit"  class="btn btn-danger btn-sm "> <i class="fa fa-edit    "></i>   </a>
                        @if (session('staff') !=true)
@@ -52,8 +52,10 @@
         </div>
        </div>
     </div>
+    </div>
    </div>
 </div>
+
 @component("pages.listRegister.modal")@endcomponent
 @endsection
 

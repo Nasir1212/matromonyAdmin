@@ -37,6 +37,16 @@
           
            </div>
 
+           <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+            <label for="" class="form-label"><small>Keywords</small> </label>
+            <input  type="text"  name="keywords" value="{{$blog->keywords ?? ''}}" class="form-control"  placeholder="Enter Keywords"   />
+           </div>
+
+           <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+            <label for="" class="form-label"><small>Meta Discription</small> </label>
+            <input  type="text"  name="meta_discription" value="{{$blog->meta_discription ?? ''}}" class="form-control"  placeholder="Enter Meta Discription"   />
+           </div>
+
            <div class="mb-3 col-sm-12 col-md-12 col-lg-12">
             <label for="" class="form-label"><small> Content </small> </label>
            <textarea class="form-control" name="blog" id="summernote" >

@@ -23,6 +23,8 @@ class BlogController extends Controller
         BlogModel::insert([
             'title'=>$req->title,
             'blog'=>$req->blog,
+            'keywords'=>$req->keywords,
+            'meta_discription'=>$req->meta_discription,
             'img_path'=> $this->upload_image($req->file("img_path")),
         ]);
         return back()->with(['condition'=>true, 'message'=>'data submitted successfully']);
@@ -40,6 +42,8 @@ class BlogController extends Controller
             BlogModel::where(['id'=>$req->id])->update([
                 'title'=>$req->title,
                 'blog'=>$req->blog,
+                'keywords'=>$req->keywords,
+                'meta_discription'=>$req->meta_discription,
                 'img_path'=> $this->update_img($req->file("img_path"),$req->old_img_path),
             ]);
          
@@ -48,6 +52,8 @@ class BlogController extends Controller
             BlogModel::where(['id'=>$req->id])->update([
                 'title'=>$req->title,
                 'blog'=>$req->blog,
+                'keywords'=>$req->keywords,
+                'meta_discription'=>$req->meta_discription,
             ]);
         }
         return back()->with(['condition'=>true, 'message'=>'data Updated successfully']);
@@ -64,9 +70,9 @@ class BlogController extends Controller
     }
 
     public function update_popup(Request $req){
-       
+  
         PopUpMessage::where(['id'=>$req->id])->update([
-            'title'=>$req->title,
+           
             'message'=>$req->message,
             'date'=>$today = date("Y-m-d H:i:s")
         ]);
@@ -74,4 +80,15 @@ class BlogController extends Controller
         return back()->with(['condition'=>true, 'message'=>'data submited successfully']);
 
     }
+
+    public function popup_enable_disable(Request $req){
+       
+            PopUpMessage::where(['id'=>1])->update([
+                'disable_enable'=>$req->disable_enable,
+                'date'=>$today = date("Y-m-d H:i:s")
+            ]);
+    
+            return back()->with(['condition'=>true, 'message'=>'data submited successfully']);
+    
+        }
 }
